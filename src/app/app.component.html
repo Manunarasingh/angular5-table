@@ -1,6 +1,6 @@
-<p-table #dt [columns]="columns" [value]="data" [paginator]="true" [rows]="10" [resizableColumns]="true"
-  [reorderableColumns]="true" selectionMode="single" [(selection)]="selectedValue" dataKey="title"
-  sortField="id" sortOrder="1" [rowsPerPageOptions]="[10, 20, 30, 50]">
+<h1>Primng Table</h1>
+<p-table #dt [columns]="columns" [value]="data" [paginator]="true" [rows]="10" [resizableColumns]="true" [reorderableColumns]="true"
+  selectionMode="single" [(selection)]="selectedValue" dataKey="title" sortField="id" sortOrder="1" [rowsPerPageOptions]="[10, 25, 75, 50]">
 
   <ng-template pTemplate="caption">
     <div style="text-align: left">
@@ -15,7 +15,7 @@
     <tr>
       <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
         {{col.header}}
-        <p-sortIcon [field]="col.field" ></p-sortIcon>
+        <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
     </tr>
     <tr>

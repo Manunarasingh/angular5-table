@@ -23,18 +23,13 @@ export class AppComponent implements OnInit {
   slFilter: number;
   timeout: any;
   selectedValue: TableData;
+  content = 'Primng Table';
   ngOnInit() {
     this.dataService.getTableData().then((data) => {
         this.data = data;
     });
   }
   onPSliderChange(event, dt) {
-    if (this.timeout) {
-        clearTimeout(this.timeout);
-    }
-
-    this.timeout = setTimeout(() => {
-        dt.filter(event.value, 'id', 'gt');
-    }, 250);
+    dt.filter(event.value, 'id', 'gt');
   }
 }
