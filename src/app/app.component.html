@@ -1,46 +1,18 @@
-<h1>Primng Table</h1>
-<p-table #dt [columns]="columns" [value]="data" [paginator]="true" [rows]="10" [resizableColumns]="true" [reorderableColumns]="true"
-  selectionMode="single" [(selection)]="selectedValue" dataKey="title" sortField="id" sortOrder="1" [rowsPerPageOptions]="[10, 25, 75, 50]">
-
-  <ng-template pTemplate="caption">
-    <div style="text-align: left">
-      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-      <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
-        style="width:auto">
-      <button type="button" pButton icon="fa-file-o" iconPos="left" label="Export" (click)="dt.exportCSV()" style="float:right"></button>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="header">
-    <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
-        {{col.header}}
-        <p-sortIcon [field]="col.field"></p-sortIcon>
-      </th>
-    </tr>
-    <tr>
-      <th *ngFor="let col of columns" [ngSwitch]="col.field">
-        <div *ngSwitchCase="'id'">
-          {{slFilter}}
-          <i class="fa fa-close" (click)="slFilter=null;dt.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer"></i>
-          <p-slider [style]="{'width':'100%','margin-top':'8px'}" [(ngModel)]="slFilter" [min]="1" [max]="100" (onChange)="onPSliderChange($event, dt)"></p-slider>
-        </div>
-        <input *ngSwitchCase="'body'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-        <input *ngSwitchCase="'title'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-      </th>
-    </tr>
-  </ng-template>
-
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
-      <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-    <div style="text-align: left">
-      Selected Row : {{selectedValue ? selectedValue.id + ' , ' + selectedValue.body + ' , ' + selectedValue.title: 'none'}}
-    </div>
-  </ng-template>
-</p-table>
+<h1>Data Table</h1>
+<table #dt class="table table-bordered">
+    <thead>
+      <tr>
+          <th *ngFor="let col of columns" (click)="getSortOrder(col.field)"> 
+              {{col.header}} 
+              <i class="fa fa-fw fa-sort sortIcon"></i>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let val of data">
+        <td>{{ val.id }}</td>
+        <td>{{ val.body }}</td>
+        <td>{{ val.title }}</td>
+      </tr>
+    </tbody>
+</table>

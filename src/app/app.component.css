@@ -1,0 +1,56 @@
+tbody {
+    display:block;
+    height:300px;
+    overflow-x: hidden;
+}
+thead, thead tr, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+thead {
+    width: calc( 100% - 0.9em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+.table{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.table-bordered{
+    border: 1px solid #ddd;
+}
+.table-bordered>tbody>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+.table>thead>tr>th {
+    vertical-align: bottom;
+}
+.table thead th:first-child, .table tbody td:first-child{
+    width: 70px;
+}
+.table thead th:last-child, .table tbody td:last-child{
+    width: 300px;
+}
+.table>tbody>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+.table thead tr th:last-child{
+    border-right: none;   
+}
+.table tbody tr:nth-child(odd){
+    background: #FFF
+}
+.table tbody tr:nth-child(even) {
+    background: #CCC
+}
+
+.sortIcon, .table thead th{
+    cursor: pointer;
+}
+
